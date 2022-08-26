@@ -24,32 +24,16 @@ public class CarController {
 
     @GetMapping
     public String show(@RequestParam(value = "count", required = false) String count, Model model) {
-        if(count != null) {
-            switch (count) {
-                case "1" -> carDAO.newList(1);
-                case "2" -> carDAO.newList(2);
-                case "3" -> carDAO.newList(3);
-                case "4" -> carDAO.newList(4);
-                default -> carDAO.newList(5);
-            }
+        if (count != null) {
+            int x = Integer.parseInt(count);
+            carDAO.newList2(x);
             model.addAttribute("car", carDAO.getNewList());
-        }else {
+        } else {
             model.addAttribute("car", carDAO.getList());
         }
 
         return "cars";
 
     }
-//
-//    @GetMapping
-//      public String show2(Model model) {
-//        List<String> messages = new ArrayList<>();
-//        messages.add("Hello!");
-//        messages.add("I'm Spring MVC application");
-//        messages.add("5.2.0 version by sep'19 ");
-//        model.addAttribute("messages", messages);
-//        model.addAttribute("carAll", carDAO.getList());
-//        return "cars";
-
 
 }
